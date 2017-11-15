@@ -24,6 +24,10 @@ class Api::Base
   end
 
   def parse_response
+    #
+    # Override me to parse the response from your URL
+    #   See sample at lib/api/coins_ph.rb
+    #
   end
 
   def data

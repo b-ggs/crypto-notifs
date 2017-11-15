@@ -1,3 +1,5 @@
+require 'dotenv/load'
+
 require './lib/api'
 require './lib/notifier'
 

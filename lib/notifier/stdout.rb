@@ -1,10 +1,6 @@
 class Notifier::Stdout < Notifier::Base
   attr_accessor :output
 
-  def condition
-    true
-  end
-
   def format_message
     exchange = @data[:exchange]
     market = @data[:market]

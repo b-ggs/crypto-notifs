@@ -1,11 +1,12 @@
 class Notifier::Base
-  attr_accessor :data, :attribute, :comparison_operator, :threshold_value
+  attr_accessor :data, :attribute, :comparison_operator, :threshold_value, :skip_condition
 
   def initialize(options = {})
     @data = options[:data]
     @attribute = options[:attribute]
     @comparison_operator = options[:comparison_operator]
     @threshold_value = options[:threshold_value]
+    @skip_condition = options[:skip_condition]
   end
 
   def run
@@ -15,10 +16,7 @@ class Notifier::Base
   end
 
   def condition
-    #
-    # Override me to skip condition checking
-    #   See sample at lib/notifier/stdout.rb
-    #
+    return true if skip_condition
     condition = "data[:#{attribute}].to_f #{comparison_operator} #{threshold_value}"
     eval(condition)
   end

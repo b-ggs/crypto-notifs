@@ -1,10 +1,6 @@
 class Notifier::Telegram < Notifier::Base
   attr_accessor :message
 
-  def condition
-    true
-  end
-
   def format_message
     exchange = @data[:exchange]
     product = @data[:product]

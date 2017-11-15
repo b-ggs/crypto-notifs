@@ -1,4 +1,8 @@
+require './lib/helpers/telegram_helper'
+
 class Notifier::Telegram < Notifier::Base
+  include TelegramHelper
+
   attr_accessor :message
 
   def format_message
@@ -27,8 +31,6 @@ class Notifier::Telegram < Notifier::Base
   def send_message
     require 'telegram/bot'
 
-    token = ENV['TELEGRAM_BOT_TOKEN']
-    chat_id = ENV['TELEGRAM_CHAT_ID']
     begin
       Telegram::Bot::Client.run(token) do |bot|
         bot.api.send_message(

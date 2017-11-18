@@ -11,7 +11,7 @@ class Api::Base
 
   def fetch
     begin
-      @response = HTTParty.get(url).parsed_response
+      fetch_from_url
     rescue HTTParty::Error => e
       puts "Caught #{e}"
       # TODO log me!
@@ -41,5 +41,14 @@ class Api::Base
       pretty_buy: "#{currency} #{buy}",
       pretty_sell: "#{currency} #{sell}",
     }
+  end
+
+  def fetch_from_url
+    #
+    # Override me if you need to call multiple API endpoints
+    # This is so we can still override the fetch method without repeating the code to rescue exceptions
+    #   See sample at lib/api/coinbase.rb
+    #
+    @response = HTTParty.get(url).parsed_response
   end
 end

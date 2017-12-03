@@ -1,6 +1,6 @@
-# frozen_string_literal: true
 source "https://rubygems.org"
 
-gem 'httparty'
-gem 'dotenv'
-gem 'telegram-bot-ruby'
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# Specify your gem's dependencies in crypto_notifs.gemspec
+gemspec

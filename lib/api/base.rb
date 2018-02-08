@@ -10,6 +10,8 @@ module Api
       data
     end
 
+    private
+
     def fetch
       begin
         fetch_from_url

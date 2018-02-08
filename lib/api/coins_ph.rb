@@ -9,6 +9,8 @@ module Api
       @url = "https://quote.coins.ph/v1/markets/#{product}-#{currency}"
     end
 
+    private
+
     def parse_response
       @product = response['market']['product']
       @currency = response['market']['currency']

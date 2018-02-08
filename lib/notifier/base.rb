@@ -16,6 +16,8 @@ module Notifier
       notify
     end
 
+    private
+
     def condition
       return true if skip_condition
       condition = "data[:#{attribute}].to_f #{comparison_operator} #{threshold_value}"

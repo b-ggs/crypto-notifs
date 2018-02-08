@@ -13,6 +13,8 @@ module Api
       @sell_url = base_url + 'sell'
     end
 
+    private
+
     def parse_response
       buy_data = response[:buy]['data']
       sell_data = response[:sell]['data']

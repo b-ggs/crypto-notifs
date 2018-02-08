@@ -2,7 +2,7 @@ require 'lib/notifier/base'
 
 module Notifier
   class Stdout < Notifier::Base
-    attr_accessor :output
+    private
 
     def format_message
       exchange = @data[:exchange]
@@ -16,7 +16,7 @@ module Notifier
     end
 
     def notify
-      puts output
+      puts @output
     end
   end
 end

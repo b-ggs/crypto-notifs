@@ -7,7 +7,7 @@ module Notifier
     include TelegramHelper
     include PrettyMessageHelper
 
-    attr_accessor :message
+    private
 
     def format_message
       product = data[:product]
@@ -22,7 +22,7 @@ module Notifier
       require 'telegram/bot'
 
       Telegram::Bot::Client.run(token) do |bot|
-        send_message(bot, message)
+        send_message(bot, @message)
       end
     end
   end

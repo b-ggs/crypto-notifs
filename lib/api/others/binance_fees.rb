@@ -1,7 +1,7 @@
-require 'pry'
-require 'pry-byebug'
 require 'lib/api/base'
 require 'lib/helpers/amount_helper'
+
+# TODO: Look into using Chromedriver instead of directly querying the URL. Binance seems to be rate limiting their API, causing a timeout.
 
 module Api
   module Others

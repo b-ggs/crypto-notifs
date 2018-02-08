@@ -1,8 +1,11 @@
 require 'lib/api/base'
+require 'lib/helpers/amount_helper'
 
 module Api
   module Exchange
     class Base < Api::Base
+      include AmountHelper
+
       private
 
       def data
@@ -13,8 +16,10 @@ module Api
           currency: @currency,
           buy: @buy,
           sell: @sell,
-          pretty_buy: "#{@currency} #{@buy}",
-          pretty_sell: "#{@currency} #{@sell}",
+          pretty: {
+            buy: pretty_fiat(@buy, @currency),
+            sell: pretty_fiat(@sell, @currency)
+          }
         }
       end
     end

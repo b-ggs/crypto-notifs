@@ -2,8 +2,6 @@ require 'httparty'
 
 module Api
   class Base
-    attr_accessor :url, :response, :exchange, :product, :currency, :buy, :sell
-
     def run
       fetch
       parse_response
@@ -35,14 +33,14 @@ module Api
 
     def data
       {
-        exchange: exchange,
-        market: "#{product}-#{currency}",
-        product: product,
-        currency: currency,
-        buy: buy,
-        sell: sell,
-        pretty_buy: "#{currency} #{buy}",
-        pretty_sell: "#{currency} #{sell}",
+        exchange: @exchange,
+        market: "#{@product}-#{@currency}",
+        product: @product,
+        currency: @currency,
+        buy: @buy,
+        sell: @sell,
+        pretty_buy: "#{@currency} #{@buy}",
+        pretty_sell: "#{@currency} #{@sell}",
       }
     end
 
@@ -52,7 +50,7 @@ module Api
       # This is so we can still override the fetch method without repeating the code to rescue exceptions
       #   See sample at lib/api/coinbase.rb
       #
-      @response = HTTParty.get(url).parsed_response
+      @response = HTTParty.get(@url).parsed_response
     end
   end
 end

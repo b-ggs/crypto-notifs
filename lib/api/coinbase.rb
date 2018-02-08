@@ -2,8 +2,6 @@ require 'lib/api/base'
 
 module Api
   class Coinbase < Api::Base
-    attr_accessor :buy_url, :sell_url
-
     def initialize(options = {})
       @exchange = 'Coinbase'
       product = options[:product]
@@ -25,8 +23,8 @@ module Api
     end
 
     def fetch_from_url
-      buy_response = HTTParty.get(buy_url).parsed_response
-      sell_response = HTTParty.get(sell_url).parsed_response
+      buy_response = HTTParty.get(@buy_url).parsed_response
+      sell_response = HTTParty.get(@sell_url).parsed_response
       @response = {
         buy: buy_response,
         sell: sell_response,

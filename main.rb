@@ -1,12 +1,16 @@
-require 'dotenv/load'
+$LOAD_PATH << File.expand_path('..', __FILE__)
 
-require './lib/api'
+require 'dotenv/load'
 
 options = {
   product: 'BTC',
   currency: 'PHP',
 }
+
+require 'lib/api/coins_ph'
 coins_ph_data = Api::CoinsPh.new(options).run
+
+require 'lib/api/coinbase'
 coinbase_data = Api::Coinbase.new(options).run
 
 # options = {
@@ -17,6 +21,8 @@ coinbase_data = Api::Coinbase.new(options).run
 #   skip_condition: true,
 # }
 # Notifier::Telegram.new(options).run
+
+require 'lib/notifier/stdout'
 
 options = {
   data: coins_ph_data,

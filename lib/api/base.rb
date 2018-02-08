@@ -2,6 +2,10 @@ require 'httparty'
 
 module Api
   class Base
+    def initialize(options = {})
+      @url = options[:url]
+    end
+
     def run
       fetch
       parse_response
@@ -11,6 +15,10 @@ module Api
     private
 
     def fetch
+      #
+      # Do not override me! Override Api::Base#fetch_from_url
+      # instead if you absolutely need to.
+      #
       begin
         fetch_from_url
       rescue HTTParty::Error => e
@@ -27,28 +35,24 @@ module Api
     def parse_response
       #
       # Override me to parse the response from your URL
-      #   See sample at lib/api/coins_ph.rb
+      #   See sample at lib/api/exchange/coins_ph.rb
       #
+      @data = @response
     end
 
     def data
-      {
-        exchange: @exchange,
-        market: "#{@product}-#{@currency}",
-        product: @product,
-        currency: @currency,
-        buy: @buy,
-        sell: @sell,
-        pretty_buy: "#{@currency} #{@buy}",
-        pretty_sell: "#{@currency} #{@sell}",
-      }
+      #
+      # Override me to format the data to be returned
+      #   See sample at lib/api/exchange/base.rb
+      #
+      { data: @data }
     end
 
     def fetch_from_url
       #
       # Override me if you need to call multiple API endpoints
       # This is so we can still override the fetch method without repeating the code to rescue exceptions
-      #   See sample at lib/api/coinbase.rb
+      #   See sample at lib/api/exchange/coinbase.rb
       #
       @response = HTTParty.get(@url).parsed_response
     end

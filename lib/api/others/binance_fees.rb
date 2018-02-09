@@ -9,7 +9,7 @@ module Api
       include AmountHelper
 
       def initialize
-        @url = 'https://www.binance.com/assetWithdraw/getAllAsset.html'
+        @url = 'https://kr.binance.com/assetWithdraw/getAllAsset.html'
       end
 
       private

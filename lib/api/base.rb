@@ -25,6 +25,10 @@ module Api
         puts "Caught #{e}"
         # TODO log me!
         exit 1
+      rescue Net::OpenTimeout => e
+        puts "Caught #{e}"
+        # TODO log me!
+        exit 1
       rescue SocketError => e
         puts "No network #{e}"
         # TODO log me!
